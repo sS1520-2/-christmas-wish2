@@ -48,7 +48,7 @@
         }
         
         .header {
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
         
         h1 {
@@ -58,15 +58,41 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
         
-        .christmas-tree {
-            font-size: 60px;
-            margin: 20px 0;
-            animation: bounce 2s infinite;
+        /* SVG爱心容器样式 */
+        .svg-heart-container {
+            margin: 25px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 140px;
+            height: 140px;
         }
         
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        .svg-heart {
+            width: 100px;
+            height: 90px;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: draw 3.5s ease-in-out forwards, gentlePulse 2s ease-in-out infinite 3.5s;
+        }
+        
+        /* 绘制动画 */
+        @keyframes draw {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+        
+        /* 温和的缩放跳动（无旋转） */
+        @keyframes gentlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+        
+        h2 {
+            color: #333;
+            font-size: 1.8em;
+            margin-top: 10px;
         }
         
         .message {
@@ -124,66 +150,43 @@
             h1 {
                 font-size: 2em;
             }
+            
+            .svg-heart-container {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .svg-heart {
+                width: 85px;
+                height: 77px;
+            }
         }
-        .heart-container {
-    margin: 25px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 120px;
-    height: 120px;
-}
-
-.heart {
-    width: 60px;
-    height: 60px;
-    background-color: #e74c3c; /* 爱心颜色 */
-    position: relative;
-    transform: rotate(-45deg);
-    animation: drawHeart 1.5s ease-in-out forwards;
-    opacity: 0;
-}
-
-.heart::before,
-.heart::after {
-    content: '';
-    width: 60px;
-    height: 60px;
-    background-color: #e74c3c; /* 爱心颜色，与主体一致 */
-    border-radius: 50%;
-    position: absolute;
-}
-
-.heart::before {
-    top: -30px;
-    left: 0;
-}
-
-.heart::after {
-    top: 0;
-    left: 30px;
-}
-
-@keyframes drawHeart {
-    0% {
-        opacity: 0;
-        transform: scale(0.1) rotate(-45deg);
-    }
-    50% {
-        opacity: 0.5;
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1) rotate(-45deg);
-    }
-}
     </style>
 </head>
 <body>
     <div class="container">
-     <div class="heart-container">
-    <div class="heart"></div>
-</div>
+        <div class="header">
+            <h1>🎄 平安夜快乐 🎄</h1>
+            <!-- SVG绘制爱心 -->
+            <div class="svg-heart-container">
+                <svg class="svg-heart" viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50,30 
+                             A20,20 0 0,1 70,30 
+                             Q85,30 85,45 
+                             Q85,60 70,65 
+                             L50,85 
+                             L30,65 
+                             Q15,60 15,45 
+                             Q15,30 30,30 
+                             A20,20 0 0,1 50,30Z"
+                          fill="transparent" 
+                          stroke="#e74c3c" 
+                          stroke-width="3"/>
+                </svg>
+            </div>
+            <h2>亲爱的小霞霞：</h2>
+        </div>
+        
         <div class="message">
             <p>在这个温馨浪漫的平安夜，想把最真挚的祝福送给你：</p >
             
@@ -220,7 +223,6 @@
             snowflake.style.opacity = Math.random() * 0.5 + 0.3;
             document.body.appendChild(snowflake);
             
-
             setTimeout(() => {
                 snowflake.remove();
             }, 8000);
@@ -235,13 +237,6 @@
                 alert('小霞霞，平安夜快乐！🍎');
             }, 1000);
         };
-        // 可选：让爱心在生成后保持跳动
-setTimeout(() => {
-    const heart = document.querySelector('.heart');
-    if(heart) {
-        heart.style.animation = 'drawHeart 1.5s ease-in-out forwards, bounce 2s infinite 1.5s';
-    }
-}, 1500);
     </script>
 </body>
 </html>
