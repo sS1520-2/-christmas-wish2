@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>平安夜祝福 - 小霞霞</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .snowflake {
+            position: absolute;
+            color: #4a90e2;
+            font-size: 20px;
+            opacity: 0.7;
+            animation: fall linear infinite;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+        
+        .header {
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            color: #e74c3c;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .christmas-tree {
+            font-size: 60px;
+            margin: 20px 0;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .message {
+            background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: left;
+            border-left: 5px solid #e74c3c;
+        }
+        
+        .message p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .blessings {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .blessing-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .blessing-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .footer {
+            margin-top: 30px;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+        .heart-container {
+    margin: 25px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+}
+
+.heart {
+    width: 60px;
+    height: 60px;
+    background-color: #e74c3c; /* 爱心颜色 */
+    position: relative;
+    transform: rotate(-45deg);
+    animation: drawHeart 1.5s ease-in-out forwards;
+    opacity: 0;
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    width: 60px;
+    height: 60px;
+    background-color: #e74c3c; /* 爱心颜色，与主体一致 */
+    border-radius: 50%;
+    position: absolute;
+}
+
+.heart::before {
+    top: -30px;
+    left: 0;
+}
+
+.heart::after {
+    top: 0;
+    left: 30px;
+}
+
+@keyframes drawHeart {
+    0% {
+        opacity: 0;
+        transform: scale(0.1) rotate(-45deg);
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(-45deg);
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+     <div class="heart-container">
+    <div class="heart"></div>
+</div>
+        <div class="message">
+            <p>在这个温馨浪漫的平安夜，想把最真挚的祝福送给你：</p >
+            
+            <p>愿平安夜的钟声，为你带去<span class="highlight">宁静与祥和</span>；</p >
+            <p>愿圣诞的雪花，为你带来<span class="highlight">洁白与纯净</span>；</p >
+            <p>愿节日的星光，为你照亮<span class="highlight">前行的道路</span>；</p >
+            <p>愿我的祝福，能温暖你的整个冬季 ❤️</p >
+            
+            <p>记得吃苹果哦～愿你来年平平安安，顺顺利利！</p >
+        </div>
+        
+        <div class="blessings">
+            <div class="blessing-item">✨ 平安喜乐 ✨</div>
+            <div class="blessing-item">🎁 心想事成 🎁</div>
+            <div class="blessing-item">🌟 万事如意 🌟</div>
+            <div class="blessing-item">💖 幸福美满 💖</div>
+        </div>
+        
+        <div class="footer">
+            <p>—— 愿你被世界温柔以待 ——</p >
+            <p style="margin-top: 10px;">🎄 Merry Christmas 🎄</p >
+        </div>
+    </div>
+    
+    <script>
+        // 创建雪花效果
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.innerHTML = '❄';
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.fontSize = Math.random() * 15 + 10 + 'px';
+            snowflake.style.animationDuration = Math.random() * 3 + 5 + 's';
+            snowflake.style.opacity = Math.random() * 0.5 + 0.3;
+            document.body.appendChild(snowflake);
+            
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, 8000);
+        }
+        
+        // 每100毫秒创建一个雪花
+        setInterval(createSnowflake, 100);
+        
+        // 页面加载完成后的祝福语显示
+        window.onload = function() {
+            setTimeout(() => {
+                alert('小霞霞，平安夜快乐！🍎');
+            }, 1000);
+        };
+        // 可选：让爱心在生成后保持跳动
+setTimeout(() => {
+    const heart = document.querySelector('.heart');
+    if(heart) {
+        heart.style.animation = 'drawHeart 1.5s ease-in-out forwards, bounce 2s infinite 1.5s';
+    }
+}, 1500);
+    </script>
+</body>
+</html>
