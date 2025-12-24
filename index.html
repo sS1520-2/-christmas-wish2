@@ -13,21 +13,23 @@
         
         body {
             font-family: "Microsoft YaHei", sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #0d2818 0%, #1a472a 30%, #0d2818 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            position: relative;
+            overflow-x: hidden;
         }
         
         .container {
-            max-width: 600px;
+            max-width: 1000px;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.97);
             border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -35,8 +37,10 @@
         
         .snowflake {
             position: absolute;
-            color: #4a90e2;
+            color: #ffffff;
             font-size: 20px;
+            user-select: none;
+            pointer-events: none;
             opacity: 0.7;
             animation: fall linear infinite;
         }
@@ -58,63 +62,468 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
         
-        /* SVG爱心容器样式 */
-        .svg-heart-container {
-            margin: 25px auto;
+        /* 主内容区域 */
+        .main-content {
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 40px 0;
+            min-height: 280px;
+            position: relative;
+        }
+        
+        /* 侧边小爱心背景区 - 现在包含文字 */
+        .side-section {
+            flex: 1;
+            height: 280px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.7);
+            box-shadow: inset 0 0 20px rgba(255, 153, 153, 0.2);
+        }
+        
+        /* 中间主爱心区域 */
+        .main-heart-area {
+            flex: 0.8;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            position: relative;
+            margin: 0 20px;
+        }
+        
+        /* 小爱心样式 */
+        .tiny-heart {
+            position: absolute;
+            fill: #ff9999;
+            opacity: 0;
+            animation: tinyHeartFloat 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        /* 小爱心浮动动画 */
+        @keyframes tinyHeartFloat {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(0.3);
+            }
+            15% {
+                opacity: 0.6;
+                transform: translateY(-20px) scale(0.5);
+            }
+            40% {
+                opacity: 0.8;
+                transform: translateY(-40px) scale(0.7);
+            }
+            70% {
+                opacity: 0.6;
+                transform: translateY(-20px) scale(0.5);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(0) scale(0.3);
+            }
+        }
+        
+        /* 主爱心样式 */
+        .main-heart {
             width: 140px;
             height: 140px;
+            stroke-dasharray: 450;
+            stroke-dashoffset: 450;
+            animation: drawStroke 2.5s ease-in-out forwards;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 5px 10px rgba(231, 76, 60, 0.3));
         }
         
-        .svg-heart {
-            width: 100px;
-            height: 90px;
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 1000;
-            animation: draw 3.5s ease-in-out forwards, gentlePulse 2s ease-in-out infinite 3.5s;
-        }
-        
-        /* 绘制动画 */
-        @keyframes draw {
+        /* 绘制边框动画 */
+        @keyframes drawStroke {
             to {
                 stroke-dashoffset: 0;
             }
         }
         
-        /* 温和的缩放跳动（无旋转） */
-        @keyframes gentlePulse {
+        /* 主爱心心跳动画 */
+        @keyframes heartbeat {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.08); }
+            25% { transform: scale(1.08); }
+            50% { transform: scale(1.12); }
+            75% { transform: scale(1.08); }
+        }
+        
+        /* 侧边文字样式 */
+        .side-text {
+            position: absolute;
+            z-index: 5;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        
+        .text-content {
+            font-size: 2.8em;
+            color: #e74c3c;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            animation: textFadeIn 0.8s ease-out forwards;
+            margin: 5px 0;
+            font-family: "Microsoft YaHei", "STKaiti", "KaiTi", serif;
+        }
+        
+        .left-text {
+            /* 左侧固定显示"霞霞" */
+        }
+        
+        .right-text {
+            /* 右侧轮流切换表白内容 */
+        }
+        
+        /* 文字淡入动画 */
+        @keyframes textFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 文字淡出动画 */
+        @keyframes textFadeOut {
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
         }
         
         h2 {
             color: #333;
             font-size: 1.8em;
             margin-top: 10px;
+            z-index: 2;
+            position: relative;
         }
         
-        .message {
-            background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
-            padding: 25px;
+        /* 圣诞树祝福区域 */
+        .christmas-tree-section {
+            margin: 40px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #1a472a 0%, #0d2818 100%);
             border-radius: 15px;
-            margin: 30px 0;
-            text-align: left;
-            border-left: 5px solid #e74c3c;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), inset 0 0 50px rgba(0, 0, 0, 0.2);
+            position: relative;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 3px solid #2e8b57;
         }
         
-        .message p {
-            font-size: 1.1em;
-            line-height: 1.6;
-            color: #333;
-            margin-bottom: 15px;
+        /* 圣诞树标题 */
+        .tree-title {
+            color: white;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            background: rgba(231, 76, 60, 0.9);
+            padding: 10px 25px;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
-        .highlight {
-            color: #e74c3c;
+        /* 圣诞树容器 */
+        .tree-container {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            margin: 0 auto 30px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+        
+        /* 圣诞树图片区域 */
+        .tree-image-area {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+        
+        /* 圣诞树图片 */
+        .tree-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+            z-index: 1;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 默认圣诞树样式（如果图片未加载） */
+        .default-tree {
+            width: 0;
+            height: 0;
+            border-left: 120px solid transparent;
+            border-right: 120px solid transparent;
+            border-bottom: 200px solid #2e8b57;
+            position: relative;
+            z-index: 1;
+            display: none;
+        }
+        
+        .default-tree::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: -100px;
+            width: 0;
+            height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 170px solid #3cb371;
+        }
+        
+        .default-tree::after {
+            content: '';
+            position: absolute;
+            top: 70px;
+            left: -80px;
+            width: 0;
+            height: 0;
+            border-left: 80px solid transparent;
+            border-right: 80px solid transparent;
+            border-bottom: 140px solid #4caf50;
+        }
+        
+        /* 树干 */
+        .tree-trunk {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 70px;
+            background: #8b4513;
+            z-index: 1;
+            border-radius: 5px 5px 0 0;
+            display: none;
+        }
+        
+        /* 树顶星星 */
+        .tree-star {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 50px;
+            color: #ffd700;
+            z-index: 10;
+            animation: twinkle 2s ease-in-out infinite, float 3s ease-in-out infinite;
+            text-shadow: 0 0 20px #ffd700;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; transform: translateX(-50%) scale(1) rotate(0deg); }
+            50% { opacity: 0.8; transform: translateX(-50%) scale(1.1) rotate(180deg); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+        
+        /* 圣诞灯饰 */
+        .tree-light {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            z-index: 2;
+            animation: lightBlink 1.5s ease-in-out infinite;
+            box-shadow: 0 0 10px currentColor;
+        }
+        
+        @keyframes lightBlink {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        
+        /* 礼物盒 */
+        .gift-box {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transform-origin: center bottom;
+        }
+        
+        .gift-box:hover {
+            transform: scale(1.3) rotate(10deg);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            z-index: 10;
+        }
+        
+        .gift-box .ribbon {
+            width: 100%;
+            height: 12px;
+            background: #ff6b6b;
+            border-radius: 8px 8px 0 0;
+            position: relative;
+        }
+        
+        .gift-box .ribbon::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: #ff6b6b;
+            border-radius: 50%;
+        }
+        
+        .gift-box .box {
+            width: 100%;
+            height: 38px;
+            border-radius: 0 0 8px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
             font-weight: bold;
+            font-size: 14px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* 礼物盒悬挂效果 */
+        .gift-box::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 15px;
+            background: #d4af37;
+            z-index: -1;
+        }
+        
+        /* 不同颜色的礼物盒 */
+        .gift-1 { top: 120px; left: 50px; }
+        .gift-1 .box { background: #ff6b6b; }
+        
+        .gift-2 { top: 180px; right: 60px; }
+        .gift-2 .box { background: #4ecdc4; }
+        
+        .gift-3 { top: 250px; left: 80px; }
+        .gift-3 .box { background: #ffe66d; color: #333; }
+        
+        .gift-4 { top: 310px; right: 70px; }
+        .gift-4 .box { background: #6a5acd; }
+        
+        .gift-5 { top: 350px; left: 50%; transform: translateX(-50%); }
+        .gift-5 .box { background: #ffa62e; }
+        
+        .gift-6 { top: 200px; left: 50%; transform: translateX(-50%); }
+        .gift-6 .box { background: #9b59b6; }
+        
+        /* 树下礼物堆 */
+        .gift-pile {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            z-index: 3;
+        }
+        
+        .pile-gift {
+            width: 50px;
+            height: 40px;
+            margin: 0 5px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 祝福语显示区域 */
+        .blessing-display {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 3px solid #e74c3c;
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+        }
+        
+        .blessing-text {
+            font-size: 1.3em;
+            color: #333;
+            line-height: 1.6;
+            text-align: center;
+            font-weight: 500;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+        
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 提示文字 */
+        .tree-hint {
+            color: white;
             font-size: 1.2em;
+            margin-top: 15px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 20px;
+            border-radius: 20px;
         }
         
         .blessings {
@@ -142,23 +551,74 @@
             font-size: 0.9em;
         }
         
-        @media (max-width: 480px) {
+        /* 图片上传提示 */
+        .image-upload-hint {
+            color: #ffd700;
+            font-size: 1em;
+            margin-top: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 8px 15px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        
+        @media (max-width: 768px) {
             .container {
+                padding: 25px;
+                max-width: 95%;
+            }
+            
+            .main-content {
+                flex-direction: column;
+                min-height: auto;
+                margin: 30px 0;
+            }
+            
+            .side-section {
+                height: 180px;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            
+            .main-heart-area {
+                margin: 20px 0;
+                order: -1;
+            }
+            
+            .main-heart {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .text-content {
+                font-size: 2.4em;
+            }
+            
+            .tree-image-area {
+                width: 250px;
+                height: 350px;
+            }
+            
+            .gift-box {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .gift-box .box {
+                font-size: 12px;
+            }
+            
+            .blessing-display {
                 padding: 20px;
+                min-height: 100px;
             }
             
             h1 {
                 font-size: 2em;
             }
             
-            .svg-heart-container {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .svg-heart {
-                width: 85px;
-                height: 77px;
+            h2 {
+                font-size: 1.6em;
             }
         }
     </style>
@@ -166,36 +626,126 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🎄 平安夜快乐 🎄</h1>
-            <!-- SVG绘制爱心 -->
-            <div class="svg-heart-container">
-                <svg class="svg-heart" viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M50,30 
-                             A20,20 0 0,1 70,30 
-                             Q85,30 85,45 
-                             Q85,60 70,65 
-                             L50,85 
-                             L30,65 
-                             Q15,60 15,45 
-                             Q15,30 30,30 
-                             A20,20 0 0,1 50,30Z"
+            <h1>🎄 平安夜祝福 🎄</h1>
+            <h2>亲爱的小霞霞：</h2>
+        </div>
+        
+        <!-- 主内容区域：左侧小爱心背景+文字 + 主爱心 + 右侧小爱心背景+文字 -->
+        <div class="main-content">
+            <!-- 左侧区域：小爱心背景 + "霞霞"文字 -->
+            <div class="side-section" id="leftSection">
+                <!-- 小爱心将通过JS动态生成 -->
+                <!-- "霞霞"文字 -->
+                <div class="side-text">
+                    <div class="text-content left-text">霞霞</div>
+                </div>
+            </div>
+            
+            <!-- 中间主爱心区域 -->
+            <div class="main-heart-area">
+                <!-- 主爱心 -->
+                <svg class="main-heart" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path id="heart-path" 
+                          d="M50,20 
+                             C65,10 85,15 85,30 
+                             C85,45 70,65 50,85 
+                             C30,65 15,45 15,30 
+                             C15,15 35,10 50,20Z"
                           fill="transparent" 
                           stroke="#e74c3c" 
                           stroke-width="3"/>
                 </svg>
             </div>
-            <h2>亲爱的小霞霞：</h2>
+            
+            <!-- 右侧区域：小爱心背景 + 轮流切换的文字 -->
+            <div class="side-section" id="rightSection">
+                <!-- 小爱心将通过JS动态生成 -->
+                <!-- 轮流切换的文字 -->
+                <div class="side-text">
+                    <div class="text-content right-text" id="changingText">我爱你</div>
+                </div>
+            </div>
         </div>
         
-        <div class="message">
-            <p>在这个温馨浪漫的平安夜，想把最真挚的祝福送给你：</p >
+        <!-- 圣诞树祝福区域 -->
+        <div class="christmas-tree-section">
+            <div class="tree-title">🎁 点击圣诞树上的礼物盒，查看我的祝福 🎁</div>
             
-            <p>愿平安夜的钟声，为你带去<span class="highlight">宁静与祥和</span>；</p >
-            <p>愿圣诞的雪花，为你带来<span class="highlight">洁白与纯净</span>；</p >
-            <p>愿节日的星光，为你照亮<span class="highlight">前行的道路</span>；</p >
-            <p>愿我的祝福，能温暖你的整个冬季 ❤️</p >
+            <!-- 圣诞树容器 -->
+            <div class="tree-container">
+                <!-- 树顶星星 -->
+                <div class="tree-star">⭐</div>
+                
+                <!-- 圣诞树图片区域 -->
+                <div class="tree-image-area">
+                    <!-- 图片放置区 - 使用您上传的图片 -->
+                    <img class="tree-image" id="treeImage" src="./77a3b649c9411c3bf8259245ac97bed6.jpg" alt="圣诞树" onerror="showDefaultTree()">
+                    
+                    <!-- 默认圣诞树（如果图片加载失败时显示） -->
+                    <div class="default-tree" id="defaultTree"></div>
+                    <div class="tree-trunk" id="treeTrunk"></div>
+                    
+                    <!-- 圣诞灯饰 -->
+                    <div class="tree-light" style="top: 150px; left: 50px; background-color: #ff6b6b; animation-delay: 0s;"></div>
+                    <div class="tree-light" style="top: 200px; right: 60px; background-color: #4ecdc4; animation-delay: 0.5s;"></div>
+                    <div class="tree-light" style="top: 250px; left: 100px; background-color: #ffe66d; animation-delay: 1s;"></div>
+                    <div class="tree-light" style="top: 300px; right: 100px; background-color: #6a5acd; animation-delay: 1.5s;"></div>
+                    <div class="tree-light" style="top: 350px; left: 150px; background-color: #ffa62e; animation-delay: 0.2s;"></div>
+                    
+                    <!-- 礼物盒 -->
+                    <div class="gift-box gift-1" data-blessing="1">
+                        <div class="ribbon"></div>
+                        <div class="box">❤️</div>
+                    </div>
+                    
+                    <div class="gift-box gift-2" data-blessing="2">
+                        <div class="ribbon"></div>
+                        <div class="box">🎄</div>
+                    </div>
+                    
+                    <div class="gift-box gift-3" data-blessing="3">
+                        <div class="ribbon"></div>
+                        <div class="box">⭐</div>
+                    </div>
+                    
+                    <div class="gift-box gift-4" data-blessing="4">
+                        <div class="ribbon"></div>
+                        <div class="box">❄️</div>
+                    </div>
+                    
+                    <div class="gift-box gift-5" data-blessing="5">
+                        <div class="ribbon"></div>
+                        <div class="box">🎁</div>
+                    </div>
+                    
+                    <div class="gift-box gift-6" data-blessing="6">
+                        <div class="ribbon"></div>
+                        <div class="box">✨</div>
+                    </div>
+                    
+                    <!-- 树下礼物堆 -->
+                    <div class="gift-pile">
+                        <div class="pile-gift" style="background: #ff6b6b;"></div>
+                        <div class="pile-gift" style="background: #4ecdc4;"></div>
+                        <div class="pile-gift" style="background: #ffe66d;"></div>
+                        <div class="pile-gift" style="background: #6a5acd;"></div>
+                        <div class="pile-gift" style="background: #ffa62e;"></div>
+                    </div>
+                </div>
+            </div>
             
-            <p>记得吃苹果哦～愿你来年平平安安，顺顺利利！</p >
+            <!-- 图片上传提示 -->
+            <p class="image-upload-hint">💡 提示：如果您的圣诞树图片没有显示，请确保图片文件已上传到GitHub仓库并与index.html在同一目录</p>
+            
+            <!-- 提示文字 -->
+            <p class="tree-hint">点击不同颜色的礼物盒，解锁我对你的祝福 ❤️</p>
+            
+            <!-- 祝福语显示区域 -->
+            <div class="blessing-display">
+                <div class="blessing-text" id="blessingText">
+                    点击圣诞树上的礼物盒，查看我对你的祝福...
+                </div>
+            </div>
         </div>
         
         <div class="blessings">
@@ -206,8 +756,8 @@
         </div>
         
         <div class="footer">
-            <p>—— 愿你被世界温柔以待 ——</p >
-            <p style="margin-top: 10px;">🎄 Merry Christmas 🎄</p >
+            <p>—— 愿你被世界温柔以待 ——</p>
+            <p style="margin-top: 10px;">🎄 Merry Christmas 🎄</p>
         </div>
     </div>
     
@@ -224,19 +774,278 @@
             document.body.appendChild(snowflake);
             
             setTimeout(() => {
-                snowflake.remove();
+                if (snowflake.parentNode) {
+                    snowflake.parentNode.removeChild(snowflake);
+                }
             }, 8000);
         }
         
-        // 每100毫秒创建一个雪花
-        setInterval(createSnowflake, 100);
+        // 显示默认圣诞树
+        function showDefaultTree() {
+            const treeImage = document.getElementById('treeImage');
+            const defaultTree = document.getElementById('defaultTree');
+            const treeTrunk = document.getElementById('treeTrunk');
+            
+            if (treeImage) {
+                treeImage.style.display = 'none';
+            }
+            if (defaultTree) {
+                defaultTree.style.display = 'block';
+            }
+            if (treeTrunk) {
+                treeTrunk.style.display = 'block';
+            }
+        }
         
-        // 页面加载完成后的祝福语显示
+        // 创建密集小爱心背景
+        function createDenseTinyHearts(sectionId, count) {
+            const section = document.getElementById(sectionId);
+            if (!section) return;
+            
+            const sectionWidth = section.offsetWidth;
+            const sectionHeight = section.offsetHeight;
+            
+            // 清空现有小爱心
+            const existingHearts = section.querySelectorAll('.tiny-heart');
+            existingHearts.forEach(heart => heart.remove());
+            
+            // 创建大量小爱心
+            for (let i = 0; i < count; i++) {
+                const heart = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                heart.classList.add("tiny-heart");
+                
+                // 随机大小 (6-16px)
+                const size = Math.random() * 10 + 6;
+                heart.setAttribute("width", size);
+                heart.setAttribute("height", size);
+                heart.setAttribute("viewBox", "0 0 100 100");
+                
+                // 随机位置 (完全覆盖区域)
+                const left = Math.random() * (sectionWidth - size);
+                const top = Math.random() * (sectionHeight - size);
+                heart.style.left = `${left}px`;
+                heart.style.top = `${top}px`;
+                
+                // 随机动画延迟 (0-5秒)
+                const delay = Math.random() * 5;
+                heart.style.animationDelay = `${delay}s`;
+                
+                // 随机动画时长 (3-6秒)
+                const duration = Math.random() * 3 + 3;
+                heart.style.animationDuration = `${duration}s`;
+                
+                // 随机透明度 (0.4-0.8)
+                const opacity = Math.random() * 0.4 + 0.4;
+                heart.style.opacity = opacity;
+                
+                // 创建爱心路径
+                const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                path.setAttribute("d", "M50,20 C65,10 85,15 85,30 C85,45 70,65 50,85 C30,65 15,45 15,30 C15,15 35,10 50,20Z");
+                path.setAttribute("fill", "#ff9999");
+                
+                heart.appendChild(path);
+                section.appendChild(heart);
+            }
+        }
+        
+        // 轮流切换表白内容
+        function rotateLoveMessages() {
+            const messages = [
+                "我爱你",
+                "超级喜欢你",
+                "最爱你",
+                "好喜欢你",
+                "只喜欢你",
+                "永远爱你",
+                "最最爱你",
+                "特别爱你"
+            ];
+            
+            let currentIndex = 0;
+            const textElement = document.getElementById('changingText');
+            
+            if (!textElement) return;
+            
+            // 初始显示第一条消息
+            textElement.textContent = messages[currentIndex];
+            textElement.style.opacity = 1;
+            
+            // 每3秒切换一次
+            setInterval(() => {
+                // 淡出动画
+                textElement.style.animation = 'textFadeOut 0.5s ease-out forwards';
+                
+                setTimeout(() => {
+                    // 切换到下一条消息
+                    currentIndex = (currentIndex + 1) % messages.length;
+                    textElement.textContent = messages[currentIndex];
+                    
+                    // 淡入动画
+                    textElement.style.animation = 'textFadeIn 0.8s ease-out forwards';
+                }, 500); // 等待淡出动画完成
+            }, 3000); // 每3秒切换一次
+        }
+        
+        // 圣诞树礼物盒祝福语
+        function setupChristmasTree() {
+            const blessingText = document.getElementById('blessingText');
+            const giftBoxes = document.querySelectorAll('.gift-box');
+            
+            // 祝福语数组
+            const blessings = [
+                "在这个温馨浪漫的平安夜，想把最真挚的祝福送给你！愿你平安喜乐，万事顺遂。",
+                "愿平安夜的钟声，为你带去宁静与祥和，让所有的烦恼都随风而去，只留下美好与幸福。",
+                "愿圣诞的雪花，为你带来洁白与纯净，让心灵得到彻底的洗礼，焕发新的光彩。",
+                "愿节日的星光，为你照亮前行的道路，每一步都走得坚定而美好，未来一片光明。",
+                "愿我的祝福，能温暖你的整个冬季，愿你来年平平安安，顺顺利利！记得吃苹果哦～",
+                "小霞霞，你是我生命中最美好的礼物，愿这个平安夜为你带来无限的喜悦和温馨！"
+            ];
+            
+            // 为每个礼物盒添加点击事件
+            giftBoxes.forEach((box, index) => {
+                box.addEventListener('click', () => {
+                    // 移除所有礼物盒的激活状态
+                    giftBoxes.forEach(b => {
+                        b.style.transform = '';
+                        b.style.boxShadow = '0 6px 12px rgba(0, 0, 0, 0.3)';
+                    });
+                    
+                    // 当前礼物盒激活效果
+                    box.style.transform = 'scale(1.4) rotate(15deg)';
+                    box.style.boxShadow = '0 12px 24px rgba(0, 0, 0, 0.5)';
+                    
+                    // 显示对应的祝福语
+                    blessingText.style.animation = 'none';
+                    setTimeout(() => {
+                        blessingText.textContent = blessings[index];
+                        blessingText.style.animation = 'fadeInUp 0.5s ease-out forwards';
+                    }, 10);
+                    
+                    // 播放点击音效
+                    playClickSound();
+                    
+                    // 添加礼物盒抖动效果
+                    box.style.animation = 'none';
+                    setTimeout(() => {
+                        box.style.animation = 'bounce 0.5s ease';
+                    }, 10);
+                });
+            });
+        }
+        
+        // 播放点击音效
+        function playClickSound() {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                oscillator.frequency.setValueAtTime(1200, audioContext.currentTime + 0.1);
+                
+                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.2);
+            } catch (e) {
+                console.log("音频播放失败，但这不影响功能");
+            }
+        }
+        
+        // 检查图片加载
+        function checkImageLoad() {
+            const treeImage = document.getElementById('treeImage');
+            if (treeImage) {
+                treeImage.onload = function() {
+                    console.log("圣诞树图片加载成功！");
+                };
+                treeImage.onerror = function() {
+                    console.log("圣诞树图片加载失败，显示默认圣诞树");
+                    showDefaultTree();
+                };
+            }
+        }
+        
+        // 每100毫秒创建一个雪花
+        let snowInterval = setInterval(createSnowflake, 100);
+        
+        // 页面加载完成后的动画序列
         window.onload = function() {
+            // 初始祝福弹窗
             setTimeout(() => {
                 alert('小霞霞，平安夜快乐！🍎');
             }, 1000);
+            
+            // 创建密集小爱心背景 (每侧60个，形成密集背景)
+            setTimeout(() => {
+                createDenseTinyHearts("leftSection", 60);
+                createDenseTinyHearts("rightSection", 60);
+            }, 500);
+            
+            // 开始轮流切换表白内容
+            setTimeout(() => {
+                rotateLoveMessages();
+            }, 2000);
+            
+            // 设置圣诞树礼物盒功能
+            setTimeout(() => {
+                setupChristmasTree();
+            }, 1500);
+            
+            // 检查图片加载
+            checkImageLoad();
+            
+            // 获取爱心路径元素
+            const heartPath = document.getElementById('heart-path');
+            
+            if (heartPath) {
+                // 第一步：2.5秒绘制爱心边框
+                // 第二步：边框绘制完成后，开始填充红色
+                setTimeout(() => {
+                    // 将填充色从 transparent 变为红色
+                    heartPath.style.fill = '#e74c3c';
+                    heartPath.style.transition = 'fill 1.2s ease-in-out';
+                    
+                    // 第三步：填充完成后，开始心跳动画
+                    setTimeout(() => {
+                        const heartSvg = document.querySelector('.main-heart');
+                        if (heartSvg) {
+                            // 添加心跳动画
+                            heartSvg.style.animation = 'drawStroke 2.5s ease-in-out forwards, heartbeat 1.5s ease-in-out infinite 4s';
+                        }
+                    }, 1200); // 在填充动画完成后开始跳动
+                }, 2500); // 在绘制动画完成后开始填充
+            }
+            
+            // 开始雪花效果
+            for(let i = 0; i < 40; i++) {
+                setTimeout(createSnowflake, i * 80);
+            }
         };
+        
+        // 窗口大小变化时重新调整小爱心位置
+        window.addEventListener('resize', function() {
+            // 重新创建小爱心背景
+            setTimeout(() => {
+                createDenseTinyHearts("leftSection", 60);
+                createDenseTinyHearts("rightSection", 60);
+            }, 200);
+        });
+        
+        // 定期刷新小爱心位置，避免堆叠
+        setInterval(() => {
+            createDenseTinyHearts("leftSection", 60);
+            createDenseTinyHearts("rightSection", 60);
+        }, 15000); // 每15秒重新生成一次小爱心
+        
+        // 防止页面卸载时内存泄漏
+        window.addEventListener('beforeunload', function() {
+            clearInterval(snowInterval);
+        });
     </script>
 </body>
 </html>
