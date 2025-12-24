@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>平安夜祝福 - 小霞霞</title>
     <style>
         * {
@@ -17,28 +17,29 @@
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
-            padding: 20px;
+            align-items: flex-start;
+            padding: 15px;
             position: relative;
             overflow-x: hidden;
         }
         
         .container {
-            max-width: 1000px;
+            max-width: 100%;
             width: 100%;
             background: rgba(255, 255, 255, 0.97);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             text-align: center;
             position: relative;
             overflow: hidden;
+            margin-top: 10px;
         }
         
         .snowflake {
             position: absolute;
             color: #ffffff;
-            font-size: 20px;
+            font-size: 16px;
             user-select: none;
             pointer-events: none;
             opacity: 0.7;
@@ -52,51 +53,95 @@
         }
         
         .header {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         
         h1 {
             color: #e74c3c;
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            font-size: 1.8em;
+            margin-bottom: 8px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            line-height: 1.3;
         }
         
-        /* 主内容区域 */
+        h2 {
+            color: #333;
+            font-size: 1.3em;
+            margin-top: 8px;
+            z-index: 2;
+            position: relative;
+            line-height: 1.4;
+        }
+        
+        /* 主内容区域 - 调整为垂直布局 */
         .main-content {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 40px 0;
-            min-height: 280px;
-            position: relative;
-        }
-        
-        /* 侧边小爱心背景区 - 现在包含文字 */
-        .side-section {
-            flex: 1;
-            height: 280px;
-            position: relative;
-            display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            overflow: hidden;
-            border-radius: 15px;
-            background: rgba(255, 255, 255, 0.7);
-            box-shadow: inset 0 0 20px rgba(255, 153, 153, 0.2);
+            margin: 25px 0;
+            position: relative;
         }
         
         /* 中间主爱心区域 */
         .main-heart-area {
-            flex: 0.8;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 10;
             position: relative;
-            margin: 0 20px;
+            margin-bottom: 25px;
+        }
+        
+        /* 主爱心样式 */
+        .main-heart {
+            width: 120px;
+            height: 120px;
+            stroke-dasharray: 450;
+            stroke-dashoffset: 450;
+            animation: drawStroke 2.5s ease-in-out forwards;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 5px 10px rgba(231, 76, 60, 0.3));
+        }
+        
+        /* 绘制边框动画 */
+        @keyframes drawStroke {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+        
+        /* 主爱心心跳动画 */
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.08); }
+            50% { transform: scale(1.12); }
+            75% { transform: scale(1.08); }
+        }
+        
+        /* 两侧文字区域 - 调整为水平排列 */
+        .side-sections-container {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        /* 侧边小爱心背景区 */
+        .side-section {
+            flex: 1;
+            height: 180px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.7);
+            box-shadow: inset 0 0 15px rgba(255, 153, 153, 0.2);
+            min-width: 0; /* 防止flex元素溢出 */
         }
         
         /* 小爱心样式 */
@@ -116,46 +161,20 @@
             }
             15% {
                 opacity: 0.6;
-                transform: translateY(-20px) scale(0.5);
+                transform: translateY(-15px) scale(0.5);
             }
             40% {
                 opacity: 0.8;
-                transform: translateY(-40px) scale(0.7);
+                transform: translateY(-30px) scale(0.7);
             }
             70% {
                 opacity: 0.6;
-                transform: translateY(-20px) scale(0.5);
+                transform: translateY(-15px) scale(0.5);
             }
             100% {
                 opacity: 0;
                 transform: translateY(0) scale(0.3);
             }
-        }
-        
-        /* 主爱心样式 */
-        .main-heart {
-            width: 140px;
-            height: 140px;
-            stroke-dasharray: 450;
-            stroke-dashoffset: 450;
-            animation: drawStroke 2.5s ease-in-out forwards;
-            margin-bottom: 15px;
-            filter: drop-shadow(0 5px 10px rgba(231, 76, 60, 0.3));
-        }
-        
-        /* 绘制边框动画 */
-        @keyframes drawStroke {
-            to {
-                stroke-dashoffset: 0;
-            }
-        }
-        
-        /* 主爱心心跳动画 */
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            25% { transform: scale(1.08); }
-            50% { transform: scale(1.12); }
-            75% { transform: scale(1.08); }
         }
         
         /* 侧边文字样式 */
@@ -171,22 +190,14 @@
         }
         
         .text-content {
-            font-size: 2.8em;
+            font-size: 2.2em;
             color: #e74c3c;
             font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
             opacity: 0;
             animation: textFadeIn 0.8s ease-out forwards;
             margin: 5px 0;
             font-family: "Microsoft YaHei", "STKaiti", "KaiTi", serif;
-        }
-        
-        .left-text {
-            /* 左侧固定显示"霞霞" */
-        }
-        
-        .right-text {
-            /* 右侧轮流切换表白内容 */
         }
         
         /* 文字淡入动画 */
@@ -213,57 +224,51 @@
             }
         }
         
-        h2 {
-            color: #333;
-            font-size: 1.8em;
-            margin-top: 10px;
-            z-index: 2;
-            position: relative;
-        }
-        
-        /* 圣诞树祝福区域 - 整体放大30% */
+        /* 圣诞树祝福区域 - 调整为适合窄屏 */
         .christmas-tree-section {
-            margin: 35px 0; /* 放大 */
-            padding: 32px; /* 放大 */
+            margin: 25px 0;
+            padding: 20px;
             background: linear-gradient(135deg, #1a472a 0%, #0d2818 100%);
-            border-radius: 18px; /* 放大 */
-            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.3), inset 0 0 60px rgba(0, 0, 0, 0.2); /* 放大 */
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), inset 0 0 40px rgba(0, 0, 0, 0.2);
             position: relative;
-            min-height: 585px; /* 放大30%：从450px到585px */
             display: flex;
             flex-direction: column;
             align-items: center;
-            border: 3px solid #2e8b57; /* 放大 */
+            border: 2px solid #2e8b57;
         }
         
         /* 圣诞树标题 */
         .tree-title {
             color: white;
-            font-size: 1.8em; /* 放大 */
-            margin-bottom: 20px; /* 放大 */
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
             background: rgba(231, 76, 60, 0.9);
-            padding: 10px 26px; /* 放大 */
-            border-radius: 32px; /* 放大 */
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3); /* 放大 */
+            padding: 8px 20px;
+            border-radius: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            line-height: 1.4;
+            text-align: center;
+            width: 100%;
         }
         
-        /* 圣诞树容器 - 放大30% */
+        /* 圣诞树容器 */
         .tree-container {
             position: relative;
             width: 100%;
-            height: 416px; /* 放大30%：从320px到416px */
-            margin: 0 auto 32px; /* 放大 */
+            height: 320px;
+            margin: 0 auto 20px;
             display: flex;
             justify-content: center;
             align-items: flex-end;
         }
         
-        /* 圣诞树图片区域 - 放大30% */
+        /* 圣诞树图片区域 */
         .tree-image-area {
             position: relative;
-            width: 312px; /* 放大30%：从240px到312px */
-            height: 416px; /* 放大30%：从320px到416px */
+            width: 250px;
+            height: 320px;
             display: flex;
             justify-content: center;
             align-items: flex-end;
@@ -274,9 +279,9 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-            filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.5)); /* 放大 */
+            filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.5));
             z-index: 1;
-            border-radius: 12px; /* 放大 */
+            border-radius: 10px;
             background: rgba(0, 0, 0, 0.1);
         }
         
@@ -284,9 +289,9 @@
         .default-tree {
             width: 0;
             height: 0;
-            border-left: 117px solid transparent; /* 放大30%：从90px到117px */
-            border-right: 117px solid transparent; /* 放大30%：从90px到117px */
-            border-bottom: 195px solid #2e8b57; /* 放大30%：从150px到195px */
+            border-left: 90px solid transparent;
+            border-right: 90px solid transparent;
+            border-bottom: 150px solid #2e8b57;
             position: relative;
             z-index: 1;
             display: none;
@@ -295,25 +300,25 @@
         .default-tree::before {
             content: '';
             position: absolute;
-            top: 32px; /* 放大30%：从25px到32px */
-            left: -97px; /* 放大30%：从-75px到-97px */
+            top: 25px;
+            left: -75px;
             width: 0;
             height: 0;
-            border-left: 97px solid transparent; /* 放大30%：从75px到97px */
-            border-right: 97px solid transparent; /* 放大30%：从75px到97px */
-            border-bottom: 169px solid #3cb371; /* 放大30%：从130px到169px */
+            border-left: 75px solid transparent;
+            border-right: 75px solid transparent;
+            border-bottom: 130px solid #3cb371;
         }
         
         .default-tree::after {
             content: '';
             position: absolute;
-            top: 71px; /* 放大30%：从55px到71px */
-            left: -78px; /* 放大30%：从-60px到-78px */
+            top: 55px;
+            left: -60px;
             width: 0;
             height: 0;
-            border-left: 78px solid transparent; /* 放大30%：从60px到78px */
-            border-right: 78px solid transparent; /* 放大30%：从60px到78px */
-            border-bottom: 143px solid #4caf50; /* 放大30%：从110px到143px */
+            border-left: 60px solid transparent;
+            border-right: 60px solid transparent;
+            border-bottom: 110px solid #4caf50;
         }
         
         /* 树干 */
@@ -322,25 +327,25 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 39px; /* 放大30%：从30px到39px */
-            height: 65px; /* 放大30%：从50px到65px */
+            width: 30px;
+            height: 50px;
             background: #8b4513;
             z-index: 1;
             border-radius: 5px 5px 0 0;
             display: none;
         }
         
-        /* 树顶星星 - 放大 */
+        /* 树顶星星 */
         .tree-star {
             position: absolute;
-            top: 10px; /* 放大 */
+            top: 8px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 52px; /* 放大30%：从40px到52px */
+            font-size: 40px;
             color: #ffd700;
             z-index: 10;
             animation: twinkle 2s ease-in-out infinite, float 3s ease-in-out infinite;
-            text-shadow: 0 0 20px #ffd700; /* 放大 */
+            text-shadow: 0 0 15px #ffd700;
         }
         
         @keyframes twinkle {
@@ -350,18 +355,18 @@
         
         @keyframes float {
             0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-10px); } /* 放大 */
+            50% { transform: translateX(-50%) translateY(-8px); }
         }
         
-        /* 圣诞灯饰 - 放大 */
+        /* 圣诞灯饰 */
         .tree-light {
             position: absolute;
-            width: 13px; /* 放大30%：从10px到13px */
-            height: 13px; /* 放大30%：从10px到13px */
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             z-index: 2;
             animation: lightBlink 1.5s ease-in-out infinite;
-            box-shadow: 0 0 10px currentColor; /* 放大 */
+            box-shadow: 0 0 8px currentColor;
         }
         
         @keyframes lightBlink {
@@ -369,12 +374,12 @@
             50% { opacity: 1; }
         }
         
-        /* 礼物盒 - 在现有基础上再缩小45% (从35px缩小到19px) */
+        /* 礼物盒 - 调整为适合窄屏 */
         .gift-box {
             position: absolute;
-            width: 19px; /* 缩小45%：35px * 0.55 = 19.25px，取19px */
-            height: 19px; /* 缩小45% */
-            border-radius: 4px; /* 相应缩小 */
+            width: 22px;
+            height: 22px;
+            border-radius: 4px;
             cursor: pointer;
             transition: all 0.3s ease;
             z-index: 5;
@@ -382,46 +387,46 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); /* 缩小 */
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
             transform-origin: center bottom;
         }
         
         .gift-box:hover {
-            transform: scale(1.5) rotate(10deg); /* 增加缩放比例以补偿小尺寸 */
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* 缩小 */
+            transform: scale(1.4) rotate(10deg);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
             z-index: 10;
         }
         
         .gift-box .ribbon {
             width: 100%;
-            height: 5px; /* 缩小 */
+            height: 5px;
             background: #ff6b6b;
-            border-radius: 4px 4px 0 0; /* 缩小 */
+            border-radius: 4px 4px 0 0;
             position: relative;
         }
         
         .gift-box .ribbon::after {
             content: '';
             position: absolute;
-            top: -3px; /* 缩小 */
+            top: -3px;
             left: 50%;
             transform: translateX(-50%);
-            width: 9px; /* 缩小 */
-            height: 9px; /* 缩小 */
+            width: 8px;
+            height: 8px;
             background: #ff6b6b;
             border-radius: 50%;
         }
         
         .gift-box .box {
             width: 100%;
-            height: 14px; /* 缩小 */
-            border-radius: 0 0 4px 4px; /* 缩小 */
+            height: 17px;
+            border-radius: 0 0 4px 4px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: bold;
-            font-size: 8px; /* 缩小 */
+            font-size: 10px;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
         
@@ -429,55 +434,54 @@
         .gift-box::before {
             content: '';
             position: absolute;
-            top: -8px; /* 缩小 */
+            top: -8px;
             left: 50%;
             transform: translateX(-50%);
-            width: 1px; /* 缩小 */
-            height: 8px; /* 缩小 */
+            width: 1px;
+            height: 8px;
             background: #d4af37;
             z-index: -1;
         }
         
-        /* 不同颜色的礼物盒 - 重新调整位置，确保在树上合适位置 */
-        .gift-1 { top: 140px; left: 70px; }
+        /* 礼物盒位置 - 重新调整以适应窄屏 */
+        .gift-1 { top: 100px; left: 40px; }
         .gift-1 .box { background: #ff6b6b; }
         
-        .gift-2 { top: 190px; right: 80px; }
+        .gift-2 { top: 140px; right: 50px; }
         .gift-2 .box { background: #4ecdc4; }
         
-        .gift-3 { top: 260px; left: 90px; }
+        .gift-3 { top: 190px; left: 60px; }
         .gift-3 .box { background: #ffe66d; color: #333; }
         
-        .gift-4 { top: 320px; right: 90px; }
+        .gift-4 { top: 240px; right: 60px; }
         .gift-4 .box { background: #6a5acd; }
         
-        .gift-5 { top: 370px; left: 50%; transform: translateX(-50%); }
+        .gift-5 { top: 290px; left: 50%; transform: translateX(-50%); }
         .gift-5 .box { background: #ffa62e; }
         
-        .gift-6 { top: 220px; left: 50%; transform: translateX(-50%); }
+        .gift-6 { top: 170px; left: 50%; transform: translateX(-50%); }
         .gift-6 .box { background: #9b59b6; }
         
-        /* 祝福语显示区域 - 相应放大 */
+        /* 祝福语显示区域 */
         .blessing-display {
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 18px; /* 放大30%：从12px到18px */
-            padding: 26px; /* 放大30%：从20px到26px */
-            margin-top: 20px; /* 放大 */
-            min-height: 120px; /* 放大30%：从90px到120px */
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 15px;
+            min-height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2); /* 放大 */
-            border: 3px solid #e74c3c; /* 放大 */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border: 2px solid #e74c3c;
             position: relative;
             width: 100%;
-            max-width: 780px; /* 放大30%：从600px到780px */
         }
         
         .blessing-text {
-            font-size: 1.4em; /* 放大30%：从1.1em到1.4em */
+            font-size: 1.1em;
             color: #333;
-            line-height: 1.6;
+            line-height: 1.5;
             text-align: center;
             font-weight: 500;
             opacity: 0;
@@ -495,30 +499,38 @@
             }
         }
         
-        /* 提示文字 - 放大 */
+        /* 提示文字 */
         .tree-hint {
             color: white;
-            font-size: 1.2em; /* 放大30%：从1em到1.2em */
-            margin-top: 18px; /* 放大30%：从12px到18px */
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            font-size: 1em;
+            margin-top: 15px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
             background: rgba(0, 0, 0, 0.3);
-            padding: 10px 20px; /* 放大 */
-            border-radius: 20px; /* 放大30%：从16px到20px */
+            padding: 8px 15px;
+            border-radius: 15px;
+            line-height: 1.4;
+            text-align: center;
+            width: 100%;
         }
         
         .blessings {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 25px 0;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 20px 0;
         }
         
         .blessing-item {
             background: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             transition: transform 0.3s;
+            font-size: 0.95em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 60px;
         }
         
         .blessing-item:hover {
@@ -526,69 +538,141 @@
         }
         
         .footer {
-            margin-top: 30px;
+            margin-top: 20px;
             color: #666;
-            font-size: 0.9em;
+            font-size: 0.85em;
+            line-height: 1.5;
         }
         
-        @media (max-width: 768px) {
+        /* 小屏幕优化 */
+        @media (max-width: 360px) {
             .container {
-                padding: 25px;
-                max-width: 95%;
-            }
-            
-            .main-content {
-                flex-direction: column;
-                min-height: auto;
-                margin: 30px 0;
-            }
-            
-            .side-section {
-                height: 180px;
-                width: 100%;
-                margin-bottom: 20px;
-            }
-            
-            .main-heart-area {
-                margin: 20px 0;
-                order: -1;
-            }
-            
-            .main-heart {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .text-content {
-                font-size: 2.4em;
-            }
-            
-            .tree-image-area {
-                width: 250px; /* 移动端适应，不按30%放大 */
-                height: 350px; /* 移动端适应，不按30%放大 */
-            }
-            
-            .gift-box {
-                width: 17px; /* 移动端适应 */
-                height: 17px; /* 移动端适应 */
-            }
-            
-            .gift-box .box {
-                font-size: 7px;
-                height: 12px; /* 移动端适应 */
-            }
-            
-            .blessing-display {
-                padding: 20px; /* 移动端适应 */
-                min-height: 100px; /* 移动端适应 */
+                padding: 15px;
             }
             
             h1 {
-                font-size: 2em;
+                font-size: 1.6em;
             }
             
             h2 {
-                font-size: 1.6em;
+                font-size: 1.2em;
+            }
+            
+            .main-heart {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .text-content {
+                font-size: 1.8em;
+            }
+            
+            .side-section {
+                height: 150px;
+            }
+            
+            .tree-image-area {
+                width: 220px;
+                height: 280px;
+            }
+            
+            .tree-container {
+                height: 280px;
+            }
+            
+            .gift-box {
+                width: 20px;
+                height: 20px;
+            }
+            
+            .gift-box .box {
+                height: 15px;
+                font-size: 9px;
+            }
+            
+            .blessings {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+        }
+        
+        /* 超小屏幕优化 */
+        @media (max-width: 320px) {
+            .container {
+                padding: 12px;
+            }
+            
+            .tree-image-area {
+                width: 200px;
+                height: 260px;
+            }
+            
+            .tree-container {
+                height: 260px;
+            }
+            
+            .gift-box {
+                width: 18px;
+                height: 18px;
+            }
+            
+            .gift-box .box {
+                height: 13px;
+                font-size: 8px;
+            }
+            
+            .blessing-display {
+                padding: 15px;
+                min-height: 90px;
+            }
+            
+            .blessing-text {
+                font-size: 1em;
+            }
+        }
+        
+        /* 横向布局优化 */
+        @media (orientation: landscape) and (max-height: 500px) {
+            body {
+                align-items: flex-start;
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 15px;
+                margin-top: 0;
+            }
+            
+            .main-content {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                margin: 15px 0;
+            }
+            
+            .main-heart-area {
+                margin-bottom: 0;
+                margin-right: 15px;
+            }
+            
+            .side-sections-container {
+                flex-direction: column;
+                width: auto;
+                gap: 10px;
+            }
+            
+            .side-section {
+                width: 150px;
+                height: 120px;
+            }
+            
+            .tree-image-area {
+                width: 200px;
+                height: 260px;
+            }
+            
+            .tree-container {
+                height: 260px;
             }
         }
     </style>
@@ -600,17 +684,8 @@
             <h2>亲爱的小霞霞：</h2>
         </div>
         
-        <!-- 主内容区域：左侧小爱心背景+文字 + 主爱心 + 右侧小爱心背景+文字 -->
+        <!-- 主内容区域 -->
         <div class="main-content">
-            <!-- 左侧区域：小爱心背景 + "霞霞"文字 -->
-            <div class="side-section" id="leftSection">
-                <!-- 小爱心将通过JS动态生成 -->
-                <!-- "霞霞"文字 -->
-                <div class="side-text">
-                    <div class="text-content left-text">霞霞</div>
-                </div>
-            </div>
-            
             <!-- 中间主爱心区域 -->
             <div class="main-heart-area">
                 <!-- 主爱心 -->
@@ -627,12 +702,20 @@
                 </svg>
             </div>
             
-            <!-- 右侧区域：小爱心背景 + 轮流切换的文字 -->
-            <div class="side-section" id="rightSection">
-                <!-- 小爱心将通过JS动态生成 -->
-                <!-- 轮流切换的文字 -->
-                <div class="side-text">
-                    <div class="text-content right-text" id="changingText">我爱你</div>
+            <!-- 两侧文字区域 -->
+            <div class="side-sections-container">
+                <!-- 左侧区域：小爱心背景 + "霞霞"文字 -->
+                <div class="side-section" id="leftSection">
+                    <div class="side-text">
+                        <div class="text-content left-text">霞霞</div>
+                    </div>
+                </div>
+                
+                <!-- 右侧区域：小爱心背景 + 轮流切换的文字 -->
+                <div class="side-section" id="rightSection">
+                    <div class="side-text">
+                        <div class="text-content right-text" id="changingText">我爱你</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -648,19 +731,19 @@
                 
                 <!-- 圣诞树图片区域 -->
                 <div class="tree-image-area">
-                    <!-- 图片放置区 - 使用您上传的图片 -->
+                    <!-- 图片放置区 -->
                     <img class="tree-image" id="treeImage" src="./77a3b649c9411c3bf8259245ac97bed6.jpg" alt="圣诞树" onerror="showDefaultTree()">
                     
                     <!-- 默认圣诞树（如果图片加载失败时显示） -->
                     <div class="default-tree" id="defaultTree"></div>
                     <div class="tree-trunk" id="treeTrunk"></div>
                     
-                    <!-- 圣诞灯饰 - 位置根据放大30%重新调整 -->
-                    <div class="tree-light" style="top: 150px; left: 55px; background-color: #ff6b6b; animation-delay: 0s;"></div>
-                    <div class="tree-light" style="top: 200px; right: 65px; background-color: #4ecdc4; animation-delay: 0.5s;"></div>
-                    <div class="tree-light" style="top: 260px; left: 95px; background-color: #ffe66d; animation-delay: 1s;"></div>
-                    <div class="tree-light" style="top: 310px; right: 95px; background-color: #6a5acd; animation-delay: 1.5s;"></div>
-                    <div class="tree-light" style="top: 360px; left: 140px; background-color: #ffa62e; animation-delay: 0.2s;"></div>
+                    <!-- 圣诞灯饰 -->
+                    <div class="tree-light" style="top: 110px; left: 45px; background-color: #ff6b6b; animation-delay: 0s;"></div>
+                    <div class="tree-light" style="top: 150px; right: 55px; background-color: #4ecdc4; animation-delay: 0.5s;"></div>
+                    <div class="tree-light" style="top: 200px; left: 70px; background-color: #ffe66d; animation-delay: 1s;"></div>
+                    <div class="tree-light" style="top: 250px; right: 70px; background-color: #6a5acd; animation-delay: 1.5s;"></div>
+                    <div class="tree-light" style="top: 300px; left: 120px; background-color: #ffa62e; animation-delay: 0.2s;"></div>
                     
                     <!-- 礼物盒 -->
                     <div class="gift-box gift-1" data-blessing="1">
@@ -715,7 +798,7 @@
         
         <div class="footer">
             <p>—— 愿你被世界温柔以待 ——</p>
-            <p style="margin-top: 10px;">🎄 Merry Christmas 🎄</p>
+            <p style="margin-top: 8px;">🎄 Merry Christmas 🎄</p>
         </div>
     </div>
     
@@ -726,7 +809,7 @@
             snowflake.classList.add('snowflake');
             snowflake.innerHTML = '❄';
             snowflake.style.left = Math.random() * 100 + 'vw';
-            snowflake.style.fontSize = Math.random() * 15 + 10 + 'px';
+            snowflake.style.fontSize = Math.random() * 12 + 8 + 'px';
             snowflake.style.animationDuration = Math.random() * 3 + 5 + 's';
             snowflake.style.opacity = Math.random() * 0.5 + 0.3;
             document.body.appendChild(snowflake);
@@ -767,32 +850,32 @@
             const existingHearts = section.querySelectorAll('.tiny-heart');
             existingHearts.forEach(heart => heart.remove());
             
-            // 创建大量小爱心
+            // 创建小爱心
             for (let i = 0; i < count; i++) {
                 const heart = document.createElementNS("http://www.w3.org/2000/svg", "svg");
                 heart.classList.add("tiny-heart");
                 
-                // 随机大小 (6-16px)
-                const size = Math.random() * 10 + 6;
+                // 随机大小 (5-12px)
+                const size = Math.random() * 7 + 5;
                 heart.setAttribute("width", size);
                 heart.setAttribute("height", size);
                 heart.setAttribute("viewBox", "0 0 100 100");
                 
-                // 随机位置 (完全覆盖区域)
+                // 随机位置
                 const left = Math.random() * (sectionWidth - size);
                 const top = Math.random() * (sectionHeight - size);
                 heart.style.left = `${left}px`;
                 heart.style.top = `${top}px`;
                 
-                // 随机动画延迟 (0-5秒)
+                // 随机动画延迟
                 const delay = Math.random() * 5;
                 heart.style.animationDelay = `${delay}s`;
                 
-                // 随机动画时长 (3-6秒)
+                // 随机动画时长
                 const duration = Math.random() * 3 + 3;
                 heart.style.animationDuration = `${duration}s`;
                 
-                // 随机透明度 (0.4-0.8)
+                // 随机透明度
                 const opacity = Math.random() * 0.4 + 0.4;
                 heart.style.opacity = opacity;
                 
@@ -840,8 +923,8 @@
                     
                     // 淡入动画
                     textElement.style.animation = 'textFadeIn 0.8s ease-out forwards';
-                }, 500); // 等待淡出动画完成
-            }, 3000); // 每3秒切换一次
+                }, 500);
+            }, 3000);
         }
         
         // 圣诞树礼物盒祝福语
@@ -869,8 +952,8 @@
                     });
                     
                     // 当前礼物盒激活效果
-                    box.style.transform = 'scale(1.6) rotate(15deg)'; /* 增加缩放比例以补偿小尺寸 */
-                    box.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.5)';
+                    box.style.transform = 'scale(1.4) rotate(15deg)';
+                    box.style.boxShadow = '0 6px 12px rgba(0, 0, 0, 0.5)';
                     
                     // 显示对应的祝福语
                     blessingText.style.animation = 'none';
@@ -928,8 +1011,8 @@
             }
         }
         
-        // 每100毫秒创建一个雪花
-        let snowInterval = setInterval(createSnowflake, 100);
+        // 每150毫秒创建一个雪花
+        let snowInterval = setInterval(createSnowflake, 150);
         
         // 页面加载完成后的动画序列
         window.onload = function() {
@@ -938,10 +1021,10 @@
                 alert('小霞霞，平安夜快乐！🍎');
             }, 1000);
             
-            // 创建密集小爱心背景 (每侧60个，形成密集背景)
+            // 创建密集小爱心背景
             setTimeout(() => {
-                createDenseTinyHearts("leftSection", 60);
-                createDenseTinyHearts("rightSection", 60);
+                createDenseTinyHearts("leftSection", 40);
+                createDenseTinyHearts("rightSection", 40);
             }, 500);
             
             // 开始轮流切换表白内容
@@ -975,13 +1058,13 @@
                             // 添加心跳动画
                             heartSvg.style.animation = 'drawStroke 2.5s ease-in-out forwards, heartbeat 1.5s ease-in-out infinite 4s';
                         }
-                    }, 1200); // 在填充动画完成后开始跳动
-                }, 2500); // 在绘制动画完成后开始填充
+                    }, 1200);
+                }, 2500);
             }
             
             // 开始雪花效果
-            for(let i = 0; i < 40; i++) {
-                setTimeout(createSnowflake, i * 80);
+            for(let i = 0; i < 30; i++) {
+                setTimeout(createSnowflake, i * 100);
             }
         };
         
@@ -989,16 +1072,16 @@
         window.addEventListener('resize', function() {
             // 重新创建小爱心背景
             setTimeout(() => {
-                createDenseTinyHearts("leftSection", 60);
-                createDenseTinyHearts("rightSection", 60);
+                createDenseTinyHearts("leftSection", 40);
+                createDenseTinyHearts("rightSection", 40);
             }, 200);
         });
         
-        // 定期刷新小爱心位置，避免堆叠
+        // 定期刷新小爱心位置
         setInterval(() => {
-            createDenseTinyHearts("leftSection", 60);
-            createDenseTinyHearts("rightSection", 60);
-        }, 15000); // 每15秒重新生成一次小爱心
+            createDenseTinyHearts("leftSection", 40);
+            createDenseTinyHearts("rightSection", 40);
+        }, 15000);
         
         // 防止页面卸载时内存泄漏
         window.addEventListener('beforeunload', function() {
