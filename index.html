@@ -221,49 +221,49 @@
             position: relative;
         }
         
-        /* 圣诞树祝福区域 */
+        /* 圣诞树祝福区域 - 整体缩小30% */
         .christmas-tree-section {
-            margin: 40px 0;
-            padding: 30px;
+            margin: 30px 0; /* 缩小 */
+            padding: 25px; /* 缩小 */
             background: linear-gradient(135deg, #1a472a 0%, #0d2818 100%);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), inset 0 0 50px rgba(0, 0, 0, 0.2);
+            border-radius: 12px; /* 缩小 */
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), inset 0 0 40px rgba(0, 0, 0, 0.2); /* 缩小 */
             position: relative;
-            min-height: 600px;
+            min-height: 450px; /* 缩小30%：从600px到450px */
             display: flex;
             flex-direction: column;
             align-items: center;
-            border: 3px solid #2e8b57;
+            border: 2px solid #2e8b57; /* 缩小 */
         }
         
         /* 圣诞树标题 */
         .tree-title {
             color: white;
-            font-size: 1.8em;
-            margin-bottom: 20px;
+            font-size: 1.5em; /* 缩小 */
+            margin-bottom: 15px; /* 缩小 */
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             background: rgba(231, 76, 60, 0.9);
-            padding: 10px 25px;
-            border-radius: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            padding: 8px 20px; /* 缩小 */
+            border-radius: 25px; /* 缩小 */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* 缩小 */
         }
         
-        /* 圣诞树容器 */
+        /* 圣诞树容器 - 缩小30% */
         .tree-container {
             position: relative;
             width: 100%;
-            height: 450px;
-            margin: 0 auto 30px;
+            height: 320px; /* 缩小30%：从450px到320px */
+            margin: 0 auto 25px; /* 缩小 */
             display: flex;
             justify-content: center;
             align-items: flex-end;
         }
         
-        /* 圣诞树图片区域 */
+        /* 圣诞树图片区域 - 缩小30% */
         .tree-image-area {
             position: relative;
-            width: 300px;
-            height: 400px;
+            width: 240px; /* 缩小30%：从300px到240px */
+            height: 320px; /* 缩小30%：从400px到320px */
             display: flex;
             justify-content: center;
             align-items: flex-end;
@@ -274,9 +274,9 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.5)); /* 缩小 */
             z-index: 1;
-            border-radius: 10px;
+            border-radius: 8px; /* 缩小 */
             background: rgba(0, 0, 0, 0.1);
         }
         
@@ -284,9 +284,9 @@
         .default-tree {
             width: 0;
             height: 0;
-            border-left: 120px solid transparent;
-            border-right: 120px solid transparent;
-            border-bottom: 200px solid #2e8b57;
+            border-left: 90px solid transparent; /* 缩小 */
+            border-right: 90px solid transparent; /* 缩小 */
+            border-bottom: 150px solid #2e8b57; /* 缩小 */
             position: relative;
             z-index: 1;
             display: none;
@@ -295,25 +295,25 @@
         .default-tree::before {
             content: '';
             position: absolute;
-            top: 30px;
-            left: -100px;
+            top: 25px; /* 缩小 */
+            left: -75px; /* 缩小 */
             width: 0;
             height: 0;
-            border-left: 100px solid transparent;
-            border-right: 100px solid transparent;
-            border-bottom: 170px solid #3cb371;
+            border-left: 75px solid transparent; /* 缩小 */
+            border-right: 75px solid transparent; /* 缩小 */
+            border-bottom: 130px solid #3cb371; /* 缩小 */
         }
         
         .default-tree::after {
             content: '';
             position: absolute;
-            top: 70px;
-            left: -80px;
+            top: 55px; /* 缩小 */
+            left: -60px; /* 缩小 */
             width: 0;
             height: 0;
-            border-left: 80px solid transparent;
-            border-right: 80px solid transparent;
-            border-bottom: 140px solid #4caf50;
+            border-left: 60px solid transparent; /* 缩小 */
+            border-right: 60px solid transparent; /* 缩小 */
+            border-bottom: 110px solid #4caf50; /* 缩小 */
         }
         
         /* 树干 */
@@ -322,25 +322,25 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 40px;
-            height: 70px;
+            width: 30px; /* 缩小 */
+            height: 50px; /* 缩小 */
             background: #8b4513;
             z-index: 1;
             border-radius: 5px 5px 0 0;
             display: none;
         }
         
-        /* 树顶星星 */
+        /* 树顶星星 - 缩小 */
         .tree-star {
             position: absolute;
-            top: 10px;
+            top: 8px; /* 缩小 */
             left: 50%;
             transform: translateX(-50%);
-            font-size: 50px;
+            font-size: 40px; /* 缩小 */
             color: #ffd700;
             z-index: 10;
             animation: twinkle 2s ease-in-out infinite, float 3s ease-in-out infinite;
-            text-shadow: 0 0 20px #ffd700;
+            text-shadow: 0 0 15px #ffd700; /* 缩小 */
         }
         
         @keyframes twinkle {
@@ -350,18 +350,18 @@
         
         @keyframes float {
             0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-10px); }
+            50% { transform: translateX(-50%) translateY(-8px); } /* 缩小 */
         }
         
-        /* 圣诞灯饰 */
+        /* 圣诞灯饰 - 缩小 */
         .tree-light {
             position: absolute;
-            width: 12px;
-            height: 12px;
+            width: 10px; /* 缩小 */
+            height: 10px; /* 缩小 */
             border-radius: 50%;
             z-index: 2;
             animation: lightBlink 1.5s ease-in-out infinite;
-            box-shadow: 0 0 10px currentColor;
+            box-shadow: 0 0 8px currentColor; /* 缩小 */
         }
         
         @keyframes lightBlink {
@@ -369,11 +369,11 @@
             50% { opacity: 1; }
         }
         
-        /* 礼物盒 - 缩小30% (从50px缩小到35px) */
+        /* 礼物盒 - 保持缩小后的尺寸 */
         .gift-box {
             position: absolute;
-            width: 35px; /* 缩小30% */
-            height: 35px; /* 缩小30% */
+            width: 35px;
+            height: 35px;
             border-radius: 6px;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -394,7 +394,7 @@
         
         .gift-box .ribbon {
             width: 100%;
-            height: 8px; /* 缩小 */
+            height: 8px;
             background: #ff6b6b;
             border-radius: 6px 6px 0 0;
             position: relative;
@@ -406,22 +406,22 @@
             top: -4px;
             left: 50%;
             transform: translateX(-50%);
-            width: 14px; /* 缩小 */
-            height: 14px; /* 缩小 */
+            width: 14px;
+            height: 14px;
             background: #ff6b6b;
             border-radius: 50%;
         }
         
         .gift-box .box {
             width: 100%;
-            height: 27px; /* 缩小 */
+            height: 27px;
             border-radius: 0 0 6px 6px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: bold;
-            font-size: 12px; /* 缩小 */
+            font-size: 12px;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
         
@@ -429,55 +429,55 @@
         .gift-box::before {
             content: '';
             position: absolute;
-            top: -12px; /* 缩小 */
+            top: -12px;
             left: 50%;
             transform: translateX(-50%);
             width: 2px;
-            height: 12px; /* 缩小 */
+            height: 12px;
             background: #d4af37;
             z-index: -1;
         }
         
-        /* 不同颜色的礼物盒 - 位置相应调整 */
-        .gift-1 { top: 130px; left: 60px; }
+        /* 不同颜色的礼物盒 - 位置根据缩小30%重新调整 */
+        .gift-1 { top: 100px; left: 50px; } /* 调整位置 */
         .gift-1 .box { background: #ff6b6b; }
         
-        .gift-2 { top: 190px; right: 70px; }
+        .gift-2 { top: 150px; right: 60px; } /* 调整位置 */
         .gift-2 .box { background: #4ecdc4; }
         
-        .gift-3 { top: 260px; left: 90px; }
+        .gift-3 { top: 210px; left: 70px; } /* 调整位置 */
         .gift-3 .box { background: #ffe66d; color: #333; }
         
-        .gift-4 { top: 320px; right: 80px; }
+        .gift-4 { top: 260px; right: 70px; } /* 调整位置 */
         .gift-4 .box { background: #6a5acd; }
         
-        .gift-5 { top: 360px; left: 50%; transform: translateX(-50%); }
+        .gift-5 { top: 300px; left: 50%; transform: translateX(-50%); } /* 调整位置 */
         .gift-5 .box { background: #ffa62e; }
         
-        .gift-6 { top: 210px; left: 50%; transform: translateX(-50%); }
+        .gift-6 { top: 170px; left: 50%; transform: translateX(-50%); } /* 调整位置 */
         .gift-6 .box { background: #9b59b6; }
         
-        /* 祝福语显示区域 */
+        /* 祝福语显示区域 - 缩小 */
         .blessing-display {
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 25px;
-            margin-top: 20px;
-            min-height: 120px;
+            border-radius: 12px; /* 缩小 */
+            padding: 20px; /* 缩小 */
+            margin-top: 15px; /* 缩小 */
+            min-height: 90px; /* 缩小 */
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            border: 3px solid #e74c3c;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* 缩小 */
+            border: 2px solid #e74c3c; /* 缩小 */
             position: relative;
             width: 100%;
-            max-width: 700px;
+            max-width: 600px; /* 缩小 */
         }
         
         .blessing-text {
-            font-size: 1.3em;
+            font-size: 1.1em; /* 缩小 */
             color: #333;
-            line-height: 1.6;
+            line-height: 1.5;
             text-align: center;
             font-weight: 500;
             opacity: 0;
@@ -495,15 +495,15 @@
             }
         }
         
-        /* 提示文字 */
+        /* 提示文字 - 缩小 */
         .tree-hint {
             color: white;
-            font-size: 1.2em;
-            margin-top: 15px;
+            font-size: 1em; /* 缩小 */
+            margin-top: 12px; /* 缩小 */
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
             background: rgba(0, 0, 0, 0.3);
-            padding: 10px 20px;
-            border-radius: 20px;
+            padding: 8px 16px; /* 缩小 */
+            border-radius: 16px; /* 缩小 */
         }
         
         .blessings {
@@ -564,23 +564,23 @@
             }
             
             .tree-image-area {
-                width: 250px;
-                height: 350px;
+                width: 200px; /* 移动端适应 */
+                height: 280px; /* 移动端适应 */
             }
             
             .gift-box {
-                width: 30px;
-                height: 30px;
+                width: 28px; /* 移动端适应 */
+                height: 28px; /* 移动端适应 */
             }
             
             .gift-box .box {
                 font-size: 10px;
-                height: 22px;
+                height: 20px; /* 移动端适应 */
             }
             
             .blessing-display {
-                padding: 20px;
-                min-height: 100px;
+                padding: 15px; /* 移动端适应 */
+                min-height: 80px; /* 移动端适应 */
             }
             
             h1 {
@@ -655,12 +655,12 @@
                     <div class="default-tree" id="defaultTree"></div>
                     <div class="tree-trunk" id="treeTrunk"></div>
                     
-                    <!-- 圣诞灯饰 -->
-                    <div class="tree-light" style="top: 150px; left: 50px; background-color: #ff6b6b; animation-delay: 0s;"></div>
-                    <div class="tree-light" style="top: 200px; right: 60px; background-color: #4ecdc4; animation-delay: 0.5s;"></div>
-                    <div class="tree-light" style="top: 250px; left: 100px; background-color: #ffe66d; animation-delay: 1s;"></div>
-                    <div class="tree-light" style="top: 300px; right: 100px; background-color: #6a5acd; animation-delay: 1.5s;"></div>
-                    <div class="tree-light" style="top: 350px; left: 150px; background-color: #ffa62e; animation-delay: 0.2s;"></div>
+                    <!-- 圣诞灯饰 - 位置根据缩小30%重新调整 -->
+                    <div class="tree-light" style="top: 120px; left: 40px; background-color: #ff6b6b; animation-delay: 0s;"></div>
+                    <div class="tree-light" style="top: 160px; right: 50px; background-color: #4ecdc4; animation-delay: 0.5s;"></div>
+                    <div class="tree-light" style="top: 200px; left: 80px; background-color: #ffe66d; animation-delay: 1s;"></div>
+                    <div class="tree-light" style="top: 240px; right: 80px; background-color: #6a5acd; animation-delay: 1.5s;"></div>
+                    <div class="tree-light" style="top: 280px; left: 120px; background-color: #ffa62e; animation-delay: 0.2s;"></div>
                     
                     <!-- 礼物盒 -->
                     <div class="gift-box gift-1" data-blessing="1">
